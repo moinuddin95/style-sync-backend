@@ -1,3 +1,7 @@
 {
-  "imports": {}
+  "imports": {
+    "serve": "https://deno.land/std@0.192.0/http/server.ts",
+    "@google/genai": "npm:@google/genai",
+    "@supabase/supabase-js": "https://esm.sh/@supabase/supabase-js@2.76.0"
+  }
 }
