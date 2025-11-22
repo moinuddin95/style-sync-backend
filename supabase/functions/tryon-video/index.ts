@@ -692,7 +692,7 @@ serve(async (_req: Request) => {
     });
     console.log("[ai] GoogleGenAI client initialized");
     const videoResponse = await promptGeminiForVideo(ai, tryonInlineData);
-    const videoUri = videoResponse?.uri!;
+    const videoUri = videoResponse?.uri! + "&key=" + API_KEY;
 
     // start
     // 1. Fetch the video binary
