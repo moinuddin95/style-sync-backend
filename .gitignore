@@ -1,0 +1,11 @@
+# Environment variables
+.env
+.env.*
+
+# Supabase generated files
+.supabase/
+supabase/.temp/
+supabase/migrations/.history/
+
+# VSCode settings
+.vscode/
