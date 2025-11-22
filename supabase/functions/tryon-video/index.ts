@@ -327,7 +327,7 @@ const promptGeminiForVideo = async (ai: GoogleGenAI, tryonInlineData: any) => {
     );
     let response: GenerateVideosOperation = await ai.models.generateVideos({
       model: "veo-3.1-generate-preview",
-      prompt: "generate a video of this model while modeling",
+      prompt: "Cinematic fashion portrait. The person in the image comes to life with subtle, elegant movements. They gently shift their weight from one leg to the other, causing the fabric of their outfit to drape naturally. A slight, slow rotation of the torso to showcase the fit of the clothing. The person maintains a confident, steady gaze towards the camera. The background remains completely static and unchanged. High fidelity, photorealistic texture on the clothing, soft studio lighting, slow motion, 4k",
       image: tryonInlineData,
     });
     let attempt = 0;
