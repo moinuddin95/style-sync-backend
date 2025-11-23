@@ -687,6 +687,8 @@ serve(async (_req: Request) => {
 
     // Gemini API interaction starts here
     const API_KEY = getEnvVar("GEMINI_API_KEY");
+    //todo remove this
+    console.log("api", API_KEY);
     const ai = new GoogleGenAI({
       apiKey: API_KEY,
     });
@@ -704,13 +706,15 @@ serve(async (_req: Request) => {
     const arrayBuf = await fetchRes.arrayBuffer();
     const bytes = new Uint8Array(arrayBuf);
 
-    //Todo: update the name here
-    const finalFileName = `video-${crypto.randomUUID()}.mp4`;
+
+    // retrieve the location to upload
+
+    const videoPath = signed_url.split(".png?")[0].split("tryon_results/")[1] + ".mp4";
 
     // 2. Upload to Supabase Storage
     const { error: uploadError } = await supabase.storage
       .from("videos")
-      .upload(finalFileName, bytes, {
+      .upload(videoPath, bytes, {
         contentType: "video/mp4",
         upsert: true,
       });
@@ -723,7 +727,7 @@ serve(async (_req: Request) => {
     // 3. Create signed URL
     const { data, error: signError } = await supabase.storage
       .from("videos")
-      .createSignedUrl(finalFileName, 60 * 60); // 1hr expiry
+      .createSignedUrl(videoPath, 60 * 60); // 1hr expiry
 
     if (signError) {
       console.error(signError);
